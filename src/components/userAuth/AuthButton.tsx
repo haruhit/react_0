@@ -4,7 +4,24 @@ import AuthContext from "../../context/AuthContext";
 const AuthButton = () => {
   const auth = useContext(AuthContext);
   console.log(auth);
-  return <>{auth ? <button>ログアウト</button> : <button>ログイン</button>}</>;
+
+  const handleSignOut = () => {
+    auth?.setUserAuth(false);
+  };
+
+  const handleSignIn = () => {
+    auth?.setUserAuth(true);
+  };
+
+  return (
+    <>
+      {auth?.userAuth ? (
+        <button onClick={handleSignOut}>ログアウト</button>
+      ) : (
+        <button onClick={handleSignIn}>ログイン</button>
+      )}
+    </>
+  );
 };
 
 export default AuthButton;
